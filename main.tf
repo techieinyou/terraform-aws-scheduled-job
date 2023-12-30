@@ -6,7 +6,7 @@ locals {
       handler     = "index.handler"
     },
     python = {
-      runtime     = ["python3.12", "python3.11", "python3.10", " python3.9", "python3.8"]
+      runtime     = ["python3.12", "python3.11", "python3.10", "python3.9", "python3.8"]
       source_file = "./sample-code/lambda-python/lambda_function.py"
       handler     = "lambda_function.lambda_handler"
     },
@@ -19,12 +19,17 @@ locals {
 }
 
 locals {
-  lambda_language    = local.language_default["${var.lambda_language}"]
-  lambda_runtime     = (var.lambda_runtime == null) ? local.lambda_language.runtime[0] : var.lambda_runtime
+  lambda_language = local.language_default["${var.lambda_language}"]
+  lambda_runtime  = contains(local.lambda_language.runtime, var.lambda_runtime) ? var.lambda_runtime : local.lambda_language.runtime[0]
+  # lambda_runtime_check = (var.lambda_runtime == null) ? local.lambda_language.runtime[0] : var.lambda_runtime
   lambda_source_file = (var.lambda_source_file == null) ? local.lambda_language.source_file : var.lambda_source_file
   lambda_handler     = (var.lambda_handler == null) ? local.lambda_language.handler : var.lambda_handler
   lambda_description = "This Scheduled Job written in ${local.lambda_runtime} and running on a schedule ${var.schedule}"
 }
+
+# locals {
+#   lambda_runtime = contains(local.lambda_language.runtime, local.lambda_runtime_check) ? local.lambda_runtime_check : local.lambda_language.runtime[0]
+# }
 
 data "archive_file" "lambda_package" {
   type        = "zip"
