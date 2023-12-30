@@ -1,5 +1,5 @@
 # terraform-aws-scheduled-job
-### This Terraform module package your Nodejs/Python code and upload to Lambda, and schedule for running on specified intervals.  
+This Terraform module will package your Nodejs/Python code and upload to Lambda, and schedule for running on specified intervals.  
 
 This module is published in Terraform as **TechieInYou/scheduled-job/aws**.   
 
@@ -9,7 +9,7 @@ This module currently supports NodeJS and Python.  Allowed runtimes are listed b
 
 ## Node.js
 
-### Lambda supports the following Node.js runtimes.
+This module supports the following Node.js runtimes.
 
 | Version     | Identifier |	
 |-------------|----------- |
@@ -21,7 +21,7 @@ See more info on https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html
 
 ## Python
 
-### Lambda supports the following Python runtimes.
+This module supports the following Python runtimes.
 
 | Version       | Identifier |	
 |---------------|----------- |
@@ -43,34 +43,37 @@ You should have an IAM Role ready to execute this module.  Provide the ARN for a
 # Optional Input Variables
 
 ### lambda_name
-Name of the Lambda for the scheduled job
+Name of the Lambda for the scheduled job. Default value is **scheduled-job**
 
 ### lambda_source_file
 File name where the code contains for scheduled job
 
 ### lambda_handler
-Entry-point function name to start executing the lambda
+Entry-point function name to start executing the lambda. Below are the default values
+    - Nodejs - index.handler
+    - Python - lambda_function.lambda_handler
+
 
 ### lambda_language
-Language of the code written for scheduled job
+Language of the code written for scheduled job.  All supported languages are listed above
 
 ### lambda_runtime
-Runtime identifier based on the language and version the scheduled-job code is written. All supported runtimes are listed in above
+Runtime identifier based on the language and version the scheduled-job code is written. All supported runtimes are listed above
 
 ### lambda_timeout
-Execution Timeout for the lambda
+Execution Timeout for the lambda. Default is 180.
 
 ### lambda_layers
-List of Lambda Layers to be used by the scheduled-job lambda
+List of Lambda Layers to be used by the scheduled-job lambda.
 
 ### schedule
 The scheduling expression. For example, cron(0 20 * * ? *) or rate(5 minutes). For more information, refer to the AWS documentation Schedule Expressions for Rules.
 
 ### lambda_env_vars
-List of Environment variables referred by Lambda
+List of Environment variables referred by Lambda.
 
 ### tags
-List of Tags for the Lambda
+List of Tags for the Lambda.
 
 
 # Output 

@@ -69,6 +69,6 @@ variable "tags" {
   type = map(any)
   description = "List of Tags for the Lambda"
   default = {
-    "created_by" : "Terraform-Module"
+    "created_by" : "Terraform-Module: TechieInYou/scheduled-job/aws"
   }
 }
