@@ -1,39 +1,34 @@
 locals {
   language_default = {
     nodejs = {
-      runtime     = ["nodejs20.x", "nodejs18.x", "nodejs16.x"]
-      source_file = "./sample-code/lambda-nodejs/index.js"
-      handler     = "index.handler"
+      runtime            = ["nodejs20.x", "nodejs18.x", "nodejs16.x"]
+      source_code_folder = "./source-code/nodejs"
+      handler            = "index.handler"
     },
     python = {
-      runtime     = ["python3.12", "python3.11", "python3.10", "python3.9", "python3.8"]
-      source_file = "./sample-code/lambda-python/lambda_function.py"
-      handler     = "lambda_function.lambda_handler"
+      runtime            = ["python3.12", "python3.11", "python3.10", "python3.9", "python3.8"]
+      source_code_folder = "./source-code/python"
+      handler            = "index.handler"
     },
     java = {
-      runtime     = ["java17", "java11", "java8"]
-      source_file = "./sample-code/lambda-java/Handler.java"
-      handler     = "example.Handler::handleRequest"
+      runtime            = ["java17", "java11", "java8"]
+      source_code_folder = "./source-code/java"
+      handler            = "example.Handler::handleRequest"
     }
   }
 }
 
 locals {
-  lambda_language = local.language_default["${var.lambda_language}"]
-  lambda_runtime  = contains(local.lambda_language.runtime, var.lambda_runtime) ? var.lambda_runtime : local.lambda_language.runtime[0]
-  # lambda_runtime_check = (var.lambda_runtime == null) ? local.lambda_language.runtime[0] : var.lambda_runtime
-  lambda_source_file = (var.lambda_source_file == null) ? local.lambda_language.source_file : var.lambda_source_file
+  lambda_language    = local.language_default["${var.lambda_language}"]
+  lambda_runtime     = contains(local.lambda_language.runtime, var.lambda_runtime) ? var.lambda_runtime : local.lambda_language.runtime[0]
+  source_code_folder = (var.source_code_folder == null) ? local.lambda_language.source_code_folder : var.source_code_folder
   lambda_handler     = (var.lambda_handler == null) ? local.lambda_language.handler : var.lambda_handler
   lambda_description = "This Scheduled Job written in ${local.lambda_runtime} and running on a schedule ${var.schedule}"
 }
 
-# locals {
-#   lambda_runtime = contains(local.lambda_language.runtime, local.lambda_runtime_check) ? local.lambda_runtime_check : local.lambda_language.runtime[0]
-# }
-
 data "archive_file" "lambda_package" {
   type        = "zip"
-  source_file = local.lambda_source_file
+  source_dir  = local.source_code_folder
   output_path = "${var.lambda_name}-Lambda.zip"
 }
 

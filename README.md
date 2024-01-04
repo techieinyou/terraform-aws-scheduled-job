@@ -3,7 +3,6 @@ This Terraform module will package your Nodejs/Python code and upload to Lambda,
 
 This module is published in Terraform as **TechieInYou/scheduled-job/aws**.   
 
-
 # Supported Languages
 This module currently supports NodeJS and Python.  Allowed runtimes are listed below. 
 
@@ -33,51 +32,6 @@ This module supports the following Python runtimes.
 
 See more info on https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html
 
-
-# Mandatory Input Variables
-
-### lambda_execution_role
-You should have an IAM Role ready to execute this module.  Provide the ARN for a role which has required permission to execute the scheduled job lambda.
-
-
-# Optional Input Variables
-
-### lambda_name
-Name of the Lambda for the scheduled job. Default value is **scheduled-job**
-
-### lambda_source_file
-File name where the code contains for scheduled job
-
-### lambda_handler
-Entry-point function name to start executing the lambda. Below are the default values
-    - Nodejs - index.handler
-    - Python - lambda_function.lambda_handler
-
-
-### lambda_language
-Language of the code written for scheduled job.  All supported languages are listed above
-
-### lambda_runtime
-Runtime identifier based on the language and version the scheduled-job code is written. All supported runtimes are listed above
-
-### lambda_timeout
-Execution Timeout for the lambda. Default is 180.
-
-### lambda_layers
-List of Lambda Layers to be used by the scheduled-job lambda.
-
-### schedule
-The scheduling expression. For example, cron(0 20 * * ? *) or rate(5 minutes). For more information, refer to the AWS documentation Schedule Expressions for Rules.
-
-### lambda_env_vars
-List of Environment variables referred by Lambda.
-
-### tags
-List of Tags for the Lambda.
-
-
-# Output 
-This module will print below values after successfull run
-
-    - lambda_arn: ARN of the lambda created by this module
-    - iam_role_arn: ARN of the IAM role provided by user
+## Source Code for scheduled job
+You can keep the Nodejs/Python source code in a folder and assign below varaibles
+    - 
