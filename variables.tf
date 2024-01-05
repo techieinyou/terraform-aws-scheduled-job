@@ -1,3 +1,8 @@
+variable "lambda_execution_role" {
+  type        = string
+  description = "You should have an IAM Role ready to execute this module.  Provide the ARN for a role which has required permission to execute the scheduled job lambda."
+}
+
 variable "lambda_name" {
   type        = string
   default     = "scheduled-job"
@@ -58,11 +63,6 @@ variable "lambda_env_vars" {
   type        = map(any)
   default     = null
   description = "List of Environment variables referred by Lambda."
-}
-
-variable "lambda_execution_role" {
-  type        = string
-  description = "You should have an IAM Role ready to execute this module.  Provide the ARN for a role which has required permission to execute the scheduled job lambda."
 }
 
 variable "tags" {

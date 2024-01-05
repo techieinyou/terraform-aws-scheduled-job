@@ -34,4 +34,10 @@ See more info on https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html
 
 ## Source Code for scheduled job
 You can keep the Nodejs/Python source code in a folder and assign below varaibles
-    - 
+
+    - source_code_folder:  path to your source code 
+    - lambda_handler: handler in the format <file-name>.<entry-point>  eg. index.handler
+
+
+## Scheduling the Job
+You can schedule your job with a timer trigger by assigning **schedule** variable with either cron or rate expression.  For example, cron(0 20 * * ? *) or rate(5 minutes).
