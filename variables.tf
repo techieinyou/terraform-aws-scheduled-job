@@ -1,3 +1,15 @@
+variable "vpc_subnets" {
+  type        = list(string)
+  default     = null
+  description = "One or more Subnets, if you like to create the Scheduled Job inside a VPC"
+}
+
+variable "vpc_security_groups" {
+  type        = list(string)
+  default     = null
+  description = "One or more Security Groups, if you like to create the Scheduled Job inside a VPC"
+}
+
 variable "lambda_execution_role" {
   type        = string
   description = "You should have an IAM Role ready to execute this module.  Provide the ARN for a role which has required permission to execute the scheduled job lambda."
@@ -66,7 +78,7 @@ variable "lambda_env_vars" {
 }
 
 variable "tags" {
-  type = map(any)
+  type        = map(any)
   description = "List of Tags for the Lambda."
   default = {
     "created_by" : "Terraform-Module: TechieInYou/scheduled-job/aws"

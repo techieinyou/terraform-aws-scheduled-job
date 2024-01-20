@@ -42,6 +42,11 @@ resource "aws_lambda_function" "batchjob_lambda_function" {
   handler          = local.lambda_handler
   timeout          = var.lambda_timeout
 
+  vpc_config {
+    subnet_ids         = (var.vpc_subnets == null) ? [] : var.vpc_subnets
+    security_group_ids = (var.vpc_security_groups == null) ? [] : var.vpc_security_groups
+  }
+
   layers = var.lambda_layers
 
   environment {

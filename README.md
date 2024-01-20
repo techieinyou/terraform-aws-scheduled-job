@@ -1,4 +1,4 @@
-# Scheduled Job in AWS
+# Scheduled Job for AWS
 This Terraform module will package your Nodejs/Python code and upload to Lambda, and schedule for running on specified intervals.  
 
 This module is published in Terraform as [**TechieInYou/scheduled-job/aws**](https://registry.terraform.io/modules/techieinyou/scheduled-job/aws/latest).  Similar module for Azure is also published as [**TechieInYou/scheduled-job/azure**](https://registry.terraform.io/modules/techieinyou/scheduled-job/azure/latest) 
@@ -36,3 +36,8 @@ You can keep the Nodejs/Python source code in a folder and assign below varaible
 
 # Scheduling the Job
 You can schedule your job with a timer trigger by assigning **schedule** variable with either cron or rate expression.  For example, `cron(0 20 * * ? *)` or `rate(5 minutes)`.
+
+# Tutorial
+You can refer below code examples to learn how this module can be used in real-time implementation 
+1. [Node.js & MySQL example](https://github.com/akbaralihussain/nodejs-mysql-scheduledjob-using-terraform-modules)
+2. [Python & MySQL example](https://github.com/akbaralihussain/python-mysql-scheduledjob-using-terraform-modules)
