@@ -1,43 +1,7 @@
-# Scheduled Job for AWS
-This Terraform module will package your Nodejs/Python code and upload to Lambda, and schedule for running on specified intervals.  
+# Moved to new Organization!!!
 
-This module is published in Terraform as [**TechieInYou/scheduled-job/aws**](https://registry.terraform.io/modules/techieinyou/scheduled-job/aws/latest).  Similar module for Azure is also published as [**TechieInYou/scheduled-job/azure**](https://registry.terraform.io/modules/techieinyou/scheduled-job/azure/latest) 
+In the course of our recent rebranding, we've moved this Terraform module to a new organization **CloudPedia.AI** to better reflect its purpose. You can find it at the new location given below. We remain committed to ongoing support for this module in its new home.
 
-# Supported Languages
-This module currently supports NodeJS and Python.  Allowed runtime versions are listed below. 
-
-## Node.js
-
-This module supports the following Node.js runtimes.  See more info in [AWS Documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-nodejs.html).
-
-| Version     | Identifier |	
-|-------------|----------- |
-| Node.js 20  | nodejs20.x |
-| Node.js 18  | nodejs18.x |
-| Node.js 16  | nodejs16.x |
-
-## Python
-
-This module supports the following Python runtimes.  See more info in [AWs Documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html)
-
-| Version       | Identifier |	
-|---------------|----------- |
-| Python 3.12   | python3.12 |
-| Python 3.11   | python3.11 |
-| Python 3.10   | python3.10 |
-| Python 3.9    | python3.9  |
-| Python 3.8    | python3.8  |
-
-# Source Code for the Scheduled Job
-You can keep the Nodejs/Python source code in a folder and assign below varaibles
-
-    - source_code_folder:  path to your source code 
-    - lambda_handler: handler in the format <file-name>.<entry-point>  eg. index.handler
-
-# Scheduling the Job
-You can schedule your job with a timer trigger by assigning **schedule** variable with either cron or rate expression.  For example, `cron(0 20 * * ? *)` or `rate(5 minutes)`.
-
-# Tutorial
-You can refer below code examples to learn how this module can be used in real-time implementation 
-1. [Node.js & MySQL example](https://github.com/akbaralihussain/nodejs-mysql-scheduledjob-using-terraform-modules)
-2. [Python & MySQL example](https://github.com/akbaralihussain/python-mysql-scheduledjob-using-terraform-modules)
+- [Terraform module](https://registry.terraform.io/modules/cloudpediaai/scheduled-job/aws/latest)
+- [Documentation](https://cloudpedia.ai/terraform-module/aws-scheduled-job/)
+- [GitHub Repo](https://github.com/CloudPediaAI/terraform-aws-scheduled-job)
